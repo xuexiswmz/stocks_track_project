@@ -6,6 +6,11 @@ import {
     TOP_STORIES_WIDGET_CONFIG
 } from "@/lib/constants";
 
+/**
+ * Render the home page composed of four TradingView widgets arranged in two responsive sections.
+ *
+ * @returns The JSX element for the home page containing Market Overview, Stock Heatmap, Top Stories timeline, and Market Quotes widgets arranged in a responsive grid.
+ */
 export default function Home() {
   const ScriptUrl = `https://s3.tradingview.com/external-embedding/embed-widget-`
   return (
