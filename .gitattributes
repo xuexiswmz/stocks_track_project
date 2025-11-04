@@ -1,0 +1,3 @@
+# Ensure husky hooks use LF line endings
+.husky/** text eol=lf
+

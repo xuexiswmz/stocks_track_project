@@ -1,0 +1,4 @@
+# 验证分支名
+. "$(dirname -- "$0")/validate-branch-name.sh"
+
+npx lint-staged
