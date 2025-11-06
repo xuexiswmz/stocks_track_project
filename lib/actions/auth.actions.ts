@@ -1,4 +1,5 @@
 import { getAuth } from "../better-auth/auth";
+import { inngest } from "../inngest/client";
 
 export interface SignUpFormData {
   email: string;
@@ -14,11 +15,11 @@ export const signUpWithEmail = async ({
   email,
   password,
   username,
-}: {
-  email: string;
-  password: string;
-  username: string;
-}) => {
+  country,
+  investmentGoals,
+  riskTolerance,
+  preferredIndustry,
+}: SignUpFormData) => {
   try {
     const authClient = await getAuth();
     const response = await authClient.api.signUpEmail({
@@ -29,9 +30,19 @@ export const signUpWithEmail = async ({
       },
     });
     if (response) {
-      return { success: true, data: response };
+      await inngest.send({
+        name: "app/user.created",
+        data: {
+          email,
+          name: username,
+          country,
+          investmentGoals,
+          riskTolerance,
+          preferredIndustry,
+        },
+      });
     }
-    return { success: false, error: "Sign up failed" };
+    return { success: true };
   } catch (e) {
     console.log("Sign up failed", e);
     return { success: false, error: "Sign up failed" };
