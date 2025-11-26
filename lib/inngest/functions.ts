@@ -18,20 +18,19 @@ export const sendSignUpEmail = inngest.createFunction(
       userProfile
     );
     const response = await step.ai.infer("generator-welcome-intro", {
-      model: step.ai.models.gemini({ model: "gemini-2.5-flash-lite" }),
+      model: step.ai.models.deepseek({ model: "deepseek-chat" }),
       body: {
-        contents: [
+        messages: [
           {
             role: "user",
-            parts: [{ text: prompt }],
+            content: prompt,
           },
         ],
       },
     });
     await step.run("send-welcome-email", async () => {
-      const part = response.candidates?.[0]?.content?.parts?.[0];
       const introText =
-        (part && "text" in part ? part.text : null) || "Thanks for joining us!";
+        response.choices?.[0]?.message?.content || "Thanks for joining us!";
 
       const {
         data: { email, name },

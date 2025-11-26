@@ -2,11 +2,19 @@ import nodemailer from "nodemailer";
 import { WELCOME_EMAIL_TEMPLATE } from "./templates";
 
 export const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587, // 使用587端口
+  secure: false, // 587端口使用STARTTLS
   auth: {
     user: process.env.NODEMAILER_EMAIL!,
     pass: process.env.NODEMAILER_PASSWORD!,
   },
+  tls: {
+    rejectUnauthorized: false, // 在开发环境中允许自签名证书
+  },
+  connectionTimeout: 60000, // 60秒连接超时
+  greetingTimeout: 30000, // 30秒问候超时
+  socketTimeout: 60000, // 60秒socket超时
 });
 
 export const sendWelcomeEmail = async ({
@@ -20,12 +28,28 @@ export const sendWelcomeEmail = async ({
   );
 
   const mailOptions = {
-    from: `"Signalist-stocks-app" <signalist@xuexiswmz> `,
+    from: `"Signalist Stocks App" <${process.env.NODEMAILER_EMAIL}>`,
     to: email,
     subject: "Welcome to Signalist Stocks App",
     text: "Thanks for joining Signalist",
     html: htmlTemplate,
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    // 验证连接
+    await transporter.verify();
+    console.log("SMTP connection verified successfully");
+
+    // 发送邮件
+    const result = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", result.messageId);
+    return result;
+  } catch (error) {
+    console.error("Email sending failed:", error);
+    throw new Error(
+      `Failed to send welcome email: ${
+        error instanceof Error ? error.message : "Unknown error"
+      }`
+    );
+  }
 };
