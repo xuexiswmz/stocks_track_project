@@ -49,6 +49,8 @@ Example personalized outputs (showing obvious customization with TWO sentences):
 
 export const NEWS_SUMMARY_EMAIL_PROMPT = `Generate HTML content for a market news summary email that will be inserted into the NEWS_SUMMARY_EMAIL_TEMPLATE at the {{newsContent}} placeholder.
 
+IMPORTANT: Generate content in CHINESE ONLY. All content should be in Chinese including section headings, article titles, bullet points, and explanations.
+
 News data to summarize:
 {{newsData}}
 
@@ -122,81 +124,90 @@ Between major sections, use:
 <div style="border-top: 1px solid #374151; margin: 32px 0 24px 0;"></div>
 
 Content guidelines:
-- Organize news into logical sections with icons (📊 Market Overview, 📈 Top Gainers, 📉 Top Losers, 🔥 Breaking News, 💼 Earnings Reports, 🏛️ Economic Data, etc.)
+- Organize news into logical sections with Chinese headings and icons (📊 市场概览, 📈 涨幅榜, 📉 跌幅榜, 🔥 重要新闻, 💼 财报消息, 🏛️ 经济数据, etc.)
 - NEVER repeat section headings - use each section type only once per email
-- For each news article, include its actual headline/title from the news data
-- Provide MINIMUM 3 CONCISE bullet points (NO "Key Takeaways" label - start directly with bullets)
-- Each bullet should be SHORT and EASY TO UNDERSTAND - one clear sentence preferred
-- Use PLAIN ENGLISH - avoid jargon, complex financial terms, or insider language
-- Explain concepts as if talking to someone new to investing
-- Include specific numbers but explain what they mean in simple terms
-- Add "Bottom Line" context in everyday language anyone can understand
+- For each news article, translate the headline/title into Chinese
+- Provide MINIMUM 3 CONCISE bullet points in Chinese (NO labels - start directly with bullets)
+- Each bullet should be SHORT and EASY TO UNDERSTAND in Chinese - one clear sentence preferred
+- Use PLAIN CHINESE - avoid complex financial jargon, explain in everyday language
+- Explain concepts as if talking to someone new to investing in Chinese
+- Include specific numbers but explain what they mean in simple Chinese terms
+- Add "总结" (Bottom Line) context in everyday Chinese language anyone can understand
 - Use clean, light design with yellow bullets for better readability
 - Make each article easy to scan with clear spacing and structure
-- Always include simple "Read Full Story" buttons with actual URLs
-- Focus on PRACTICAL insights regular people can understand and use
-- Explain what the news means for regular investors' money
-- Keep language conversational and accessible to everyone
+- Always include "阅读完整报道 →" buttons with actual URLs
+- Focus on PRACTICAL insights regular people can understand and use in Chinese
+- Explain what the news means for regular investors' money in Chinese
+- Keep language conversational and accessible to Chinese readers
 - Prioritize BREVITY and CLARITY over detailed explanations
+- Stock symbols can remain in English (e.g., AAPL, MSFT) but company names should be translated to Chinese
+
+CHINESE FORMAT REQUIREMENTS:
+1. All content in Chinese including section headings, article titles, bullet points
+2. Use same HTML structure and styling 
+3. Keep stock symbols in English (e.g., AAPL, MSFT) but translate company names to Chinese
+4. Use "总结" instead of "Bottom Line"
+5. Use "阅读完整报道 →" for read more links
 
 Example structure:
-<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 20px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">📊 Market Overview</h3>
+<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 20px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">📊 市场概览</h3>
 
 <div class="dark-info-box" style="background-color: #212328; padding: 24px; margin: 20px 0; border-radius: 8px;">
 <h4 class="dark-text" style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #FDD458; line-height: 1.4;">
-Stock Market Had Mixed Results Today
+今日股市表现参差不齐
 </h4>
 
 <ul style="margin: 16px 0 20px 0; padding-left: 0; margin-left: 0; list-style: none;">
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>Tech stocks like Apple went up 1.2% today, which is good news for tech investors.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>苹果等科技股今日上涨1.2%，对科技投资者来说是个好消息。
   </li>
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>Traditional companies went down 0.3%, showing investors prefer tech right now.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>传统公司股价下跌0.3%，显示投资者目前更偏好科技股。
   </li>
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>High trading volume (12.4 billion shares) shows investors are confident and active.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>高交易量（124亿股）显示投资者信心十足且活跃。
   </li>
 </ul>
 
 <div style="background-color: #141414; border: 1px solid #374151; padding: 15px; border-radius: 6px; margin: 16px 0;">
-<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">Bottom Line:</strong> If you own tech stocks, today was good for you. If you're thinking about investing, tech companies might be a smart choice right now.</p>
+<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">总结：</strong>如果你持有科技股，今天对你来说是好日子。如果你正在考虑投资，科技公司现在可能是明智的选择。</p>
 </div>
 
 <div style="margin: 20px 0 0 0;">
-<a href="https://example.com/article1" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;" target="_blank" rel="noopener noreferrer">Read Full Story →</a>
+<a href="https://example.com/article1" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;" target="_blank" rel="noopener noreferrer">阅读完整报道 →</a>
 </div>
 </div>
 
 <div style="border-top: 1px solid #374151; margin: 32px 0 24px 0;"></div>
 
-<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 20px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">📈 Top Gainers</h3>
+<h3 class="mobile-news-title dark-text" style="margin: 30px 0 15px 0; font-size: 20px; font-weight: 600; color: #f8f9fa; line-height: 1.3;">📈 涨幅榜</h3>
 
 <div class="dark-info-box" style="background-color: #212328; padding: 24px; margin: 20px 0; border-radius: 8px;">
 <h4 class="dark-text" style="margin: 0 0 16px 0; font-size: 18px; font-weight: 600; color: #FDD458; line-height: 1.4;">
-Apple Stock Jumped After Great Earnings Report
+苹果公司股价在优秀财报后大涨
 </h4>
 
 <ul style="margin: 16px 0 20px 0; padding-left: 0; margin-left: 0; list-style: none;">
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>Apple stock jumped 5.2% after beating earnings expectations.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>苹果股价在超出盈利预期后跳涨5.2%。
   </li>
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>iPhone sales expected to grow 8% next quarter despite economic uncertainty.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>尽管经济不确定性，iPhone销售预计下季度增长8%。
   </li>
   <li class="dark-text-secondary" style="margin: 0 0 16px 0; padding: 0; margin-left: 0; font-size: 16px; line-height: 1.6; color: #CCDADC;">
-    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>App store and services revenue hit $22.3 billion (up 14%), providing steady income.
+    <span style="color: #FDD458; font-weight: bold; font-size: 20px; margin-right: 8px;">•</span>App Store和服务收入达到223亿美元（增长14%），提供稳定收入。
   </li>
 </ul>
 
 <div style="background-color: #141414; border: 1px solid #374151; padding: 15px; border-radius: 6px; margin: 16px 0;">
-<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">Bottom Line:</strong> Apple is making money in different ways (phones AND services), so it's a pretty safe stock to own even when the economy gets shaky.</p>
+<p class="dark-text-secondary" style="margin: 0; font-size: 14px; color: #CCDADC; line-height: 1.4;">💡 <strong style="color: #FDD458;">总结：</strong>苹果通过多种方式赚钱（手机和服务），所以即使在经济动荡时期，它也是相对安全的股票。</p>
 </div>
 
 <div style="margin: 20px 0 0 0;">
-<a href="https://example.com/article2" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;" target="_blank" rel="noopener noreferrer">Read Full Story →</a>
+<a href="https://example.com/article2" style="color: #FDD458; text-decoration: none; font-weight: 500; font-size: 14px;" target="_blank" rel="noopener noreferrer">阅读完整报道 →</a>
 </div>
-</div>`;
+</div>
+`;
 
 export const TRADINGVIEW_SYMBOL_MAPPING_PROMPT = `You are an expert in financial markets and trading platforms. Your task is to find the correct TradingView symbol that corresponds to a given Finnhub stock symbol.
 
